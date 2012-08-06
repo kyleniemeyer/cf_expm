@@ -1,7 +1,7 @@
 cf_expm
 =======
 
-`cf_expm` calculates the residuals and poles needed for the rational function (partial fraction) approximation to the matrix exponential.
+`cf_expm` calculates the residuals and poles needed for the rational function (partial fraction) approximation to the matrix exponential. It does this using the Carathéodory-Fejér method, and it is based on the MATLAB code in L.N. Trefethen, J.A.C. Weideman, T. Schmelzer, "Talbot quadratures and rational approximations," BIT Numer. Math. 46 (2006) 653–670. [doi:10.1007/s10543-006-0077-9](http://dx.doi.org/10.1007/s10543-006-0077-9)
 
 It requires LAPACK and [FFTW](http://www.fftw.org/).
 
@@ -22,3 +22,8 @@ License
 -------
 
 `cf_expm` is released under the modified BSD license, see LICENSE for details.
+
+Author
+------
+
+Created by [Kyle Niemeyer](http://kyleniemeyer.com). Email address: [kyle.niemeyer@gmail.com](mailto:kyle.niemeyer@gmail.com)
