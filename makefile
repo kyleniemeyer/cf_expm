@@ -14,7 +14,12 @@ ifndef L
   L = 4
 endif
 
-OBJ = main.o cf.o
+# object file directory
+ODIR = ./obj
+
+# source files
+_OBJ = main.o cf.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Paths
 INCLUDES    = -I.
@@ -32,7 +37,7 @@ endif
 
 all: cf_expm
 
-%.o : %.c
+$(ODIR)/%.o : %.c
 	$(CC) -c -o $@ $< $(FLAGS) $(INCLUDES)
 
 cf_expm : $(OBJ)
