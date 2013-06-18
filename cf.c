@@ -21,6 +21,11 @@
 /** Fast Fourier tranform functions */
 #include <fftw3.h>
 
+#include "cf.h"
+
+static void roots (int, double*, double complex*);
+static void svd (int, double*, double*, double*, double*);
+
 ////////////////////////////////////////////////////////////////////////
 
 /** Polynomial root finding function.
@@ -35,6 +40,7 @@
  * \param[in]		v		array of polynomial coefficients (real)
  * \param[out]	rt	array of polynomial roots (complex), size n - 1
  */
+static
 void roots (int n, double* v, double complex* rt) {
 	
 	// number of roots
@@ -109,6 +115,7 @@ void roots (int n, double* v, double complex* rt) {
  * \param[out]	U		array with left singular vectors, size n * n
  * \param[out]	V		array with right singular vectors, size n * n
  */
+static
 void svd (int n, double* A, double* S, double* U, double* V) {
 	
 	// Prototype for LAPACK DGESVD (Fortran) function
@@ -165,7 +172,7 @@ void svd (int n, double* A, double* S, double* U, double* V) {
  * \param[out]	res_r			array with real parts of residuals, size n
  * \param[out]	res_i			array with imaginary parts of residuals, size n
  */
-void cf ( int n, double* poles_r, double* poles_i, double* res_r, double* res_i ) {
+void cf (const int n, double* poles_r, double* poles_i, double* res_r, double* res_i) {
 	// number of Chebyshev coefficients
 	int K = 75;
 
@@ -238,7 +245,7 @@ void cf ( int n, double* poles_r, double* poles_i, double* res_r, double* res_i 
 	free (hankel);
 	
 	// singular value
-	double s = S[n];
+	double s_val = S[n];
 	
 	// singular vectors
 	// need u and v to be complex type for fft
@@ -287,7 +294,7 @@ void cf ( int n, double* poles_r, double* poles_i, double* res_r, double* res_i 
 	// extended function r-tilde
 	fftw_complex *rt = fftw_alloc_complex(nf);
 	for (int i = 0; i < nf; ++i) {
-		rt[i] = f[i] - s * cpow(w[i], K) * b[i];
+		rt[i] = f[i] - s_val * cpow(w[i], K) * b[i];
 	}
 	
 	fftw_free (f);

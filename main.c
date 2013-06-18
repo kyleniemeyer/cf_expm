@@ -20,8 +20,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-void cf ( int n, double* poles_r, double* poles_i, double* res_r, double* res_i );
+#include "cf.h"
 
 /** Main function, gets poles and residuals for best rational approximant to matrix exponential.
  * 
@@ -32,7 +31,7 @@ void cf ( int n, double* poles_r, double* poles_i, double* res_r, double* res_i 
  * \param[in]		argv	command line argument vector; either empty or contains n 
  *							(type of rational approximation)
  */
-int main ( int argc, char *argv[] ) {
+int main (int argc, char *argv[]) {
 	
 	// default type of approximant, (n, n)
 	int n = 10;

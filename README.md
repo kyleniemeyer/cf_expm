@@ -8,7 +8,7 @@ It requires LAPACK and [FFTW](http://www.fftw.org/).
 Usage
 -------
 
-Compile and link using `make`.
+Compile and link using `make`. Avoid using the compiler flag `-ffast-math`, as it seems to cause slightly incorrect results.
 
 Run using `./cf_expm n` where `n` is the type (n, n) of approximation (i.e., number of terms):
 
